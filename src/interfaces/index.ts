@@ -11,6 +11,13 @@ export interface IProduct {
     }
 }
 
+export interface IMainProduct {
+    title: string;
+    description: string;
+    image: string;
+    price: string;
+}
+
 export interface IInputForm {
     id: string
     name: 'title' | 'description' | 'image' | 'price'
