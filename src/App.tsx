@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import ProductCard from "./components/ProductCard"
 import Modal from "./components/ui/Modal"
 import { ProductList, inputFormList } from "./data"
@@ -7,9 +7,7 @@ import Input from "./components/ui/Input";
 import { IProduct } from "./interfaces";
 
 function App() {
-  /* __________ State __________ */
-  const [isOpen, setIsOpen] = useState(false);
-  const [product, setProduct] = useState <IProduct> ({
+  const defaultProduct = {
     title: '',
     description: '',
     image: '',
@@ -19,7 +17,10 @@ function App() {
       name: '',
       image: ''
     }
-  })
+  }
+  /* __________ State __________ */
+  const [isOpen, setIsOpen] = useState(false);
+  const [product, setProduct] = useState <IProduct> (defaultProduct)
 
   /* __________ Handler __________ */
   const open = () => setIsOpen(true);
@@ -30,7 +31,15 @@ function App() {
       ... product,
       [name]: value
     })
+  }
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    console.log(product);
+  }
+
+  const handleCancel = () => {
+    setProduct(defaultProduct)
   }
   
   /* __________ Render __________ */
@@ -54,7 +63,7 @@ function App() {
   )
   
   console.log(product);
-  
+
   return (
     <main className="container">
       <Button 
@@ -67,11 +76,11 @@ function App() {
         {renderProductList}
       </div>
       <Modal isOpen={isOpen} close={close} title="ADD NEW PRODUCT">
-        <form className="space-y-3">
+        <form className="space-y-3" onSubmit={handleSubmit}>
           {renderInputList}
           <div className="flex items-center space-x-3">
             <Button className="bg-indigo-600 hover:bg-indigo-800">Submit</Button>
-            <Button className="bg-gray-400 hover:bg-gray-600">Cancel</Button>
+            <Button className="bg-gray-400 hover:bg-gray-600" onClick={handleCancel}>Cancel</Button>
           </div>
         </form>
       </Modal>
