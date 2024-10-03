@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
-import { IProduct } from "../interfaces"
+import { IProduct, IInputForm } from "../interfaces"
 export const ProductList: IProduct[] = [
     {
         id: uuid(),
@@ -99,5 +99,33 @@ export const ProductList: IProduct[] = [
 
         }
     },
+]
 
+export const inputFormList: IInputForm[] = [
+    {
+        id: "title",
+        name: "title",
+        type: "text",
+        label: "Product title"
+    },
+    {
+        id: "description",
+        name: "description",
+        label: "Product description",
+        type: "text",
+
+    },
+    {
+        id: "image",
+        name: "image",
+        label: "ImageUrl",
+        type: "text",
+
+    },
+    {
+        id: "price",
+        name: "price",
+        label: "Product price",
+        type: "text",
+    }
 ]

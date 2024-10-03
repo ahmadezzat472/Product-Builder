@@ -10,3 +10,10 @@ export interface IProduct {
         image: string;
     }
 }
+
+export interface IInputForm {
+    id: string
+    name: 'title' | 'description' | 'image' | 'price'
+    type: string
+    label: string
+}
