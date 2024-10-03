@@ -25,6 +25,7 @@ function App() {
   /* __________ Handler __________ */
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
+
   const handleChangeProduct = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
     setProduct({
@@ -33,15 +34,16 @@ function App() {
     })
   }
 
+  const handleCancel = () => {
+    setProduct(defaultProduct)
+    close()
+  }
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     console.log(product);
   }
 
-  const handleCancel = () => {
-    setProduct(defaultProduct)
-  }
-  
   /* __________ Render __________ */
   const renderProductList = ProductList.map( (product) => <ProductCard key={product.id} product={product}/>)
   const renderInputList = inputFormList.map( (input) => 
@@ -62,8 +64,6 @@ function App() {
     </div>
   )
   
-  console.log(product);
-
   return (
     <main className="container">
       <Button 
