@@ -129,3 +129,19 @@ export const inputFormList: IInputForm[] = [
         type: "text",
     }
 ]
+
+export const colors: string[] = [
+    "#FF0000",
+    "#0000FF",
+    "#FFFF00",
+    "#00FFFF",
+    "#FF00FF",
+    "#FFA500",
+    "#800080",
+    "#00FF00",
+    "#FFC0CB",
+    "#A52A2A",
+    "#808080",
+    "#000000",
+    "#FFFFFF",
+]

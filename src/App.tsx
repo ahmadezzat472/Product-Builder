@@ -1,12 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import ProductCard from "./components/ProductCard"
 import Modal from "./components/ui/Modal"
-import { ProductList, inputFormList } from "./data"
+import { ProductList, colors, inputFormList } from "./data"
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import { IMainProduct, IProduct } from "./interfaces";
 import { errorValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
+import CircleColor from "./components/ui/CircleColor";
 
 function App() {
   /* __________ Variables __________ */
@@ -98,6 +99,7 @@ function App() {
       <ErrorMsg msg={errors[input.name]} />
     </div>
   )
+  const renderColorList = colors.map( (color) => <CircleColor color={color} />)
   
   return (
     <main className="container">
@@ -113,6 +115,9 @@ function App() {
       <Modal isOpen={isOpen} close={close} title="ADD NEW PRODUCT">
         <form className="space-y-3" onSubmit={handleSubmit}>
           {renderInputList}
+          <div className="flex space-x-1 items-center flex-wrap">
+            {renderColorList}
+          </div>
           <div className="flex items-center space-x-3">
             <Button className="bg-indigo-600 hover:bg-indigo-800">Submit</Button>
             <Button className="bg-gray-400 hover:bg-gray-600" onClick={handleCancel}>Cancel</Button>
