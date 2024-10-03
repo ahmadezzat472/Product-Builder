@@ -4,10 +4,12 @@ import Modal from "./components/ui/Modal"
 import { ProductList, inputFormList } from "./data"
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
-import { IProduct } from "./interfaces";
+import { IMainProduct, IProduct } from "./interfaces";
 import { errorValidation } from "./validation";
+import ErrorMsg from "./components/ErrorMsg";
 
 function App() {
+  /* __________ Variables __________ */
   const defaultProduct = {
     title: '',
     description: '',
@@ -19,9 +21,18 @@ function App() {
       image: ''
     }
   }
+
+  const defaultMainProduct = {
+    title: '',
+    description: '',
+    image: '',
+    price: '',
+  }
+
   /* __________ State __________ */
   const [isOpen, setIsOpen] = useState(false);
-  const [product, setProduct] = useState <IProduct> (defaultProduct)
+  const [product, setProduct] = useState<IProduct> (defaultProduct)
+  const [errors, setErrors] = useState<IMainProduct> (defaultMainProduct)
 
   /* __________ Handler __________ */
   const open = () => setIsOpen(true);
@@ -33,6 +44,11 @@ function App() {
       ... product,
       [name]: value
     })
+
+    setErrors({
+      ... errors,
+      [name]: ""
+    })
   }
 
   const handleCancel = () => {
@@ -42,13 +58,24 @@ function App() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
+    const {title, description, image, price} = product
+
     const errorObj = errorValidation({
-      title: product.title,
-      description: product.description,
-      image: product.image,
-      price: product.price
+      title,
+      description,
+      image,
+      price,
     })
-    console.log(errorObj);
+
+    // ** check if any item has a value of "" && check if all item have a value of ""
+    const noErrorMsg = Object.values(errorObj).some(val => val == "") && Object.values(errorObj).every(val => val == "")
+    
+    if(!noErrorMsg){
+      setErrors(errorObj)
+      return
+    }
+
+    console.log("SEND TO API");
   }
 
   /* __________ Render __________ */
@@ -68,6 +95,7 @@ function App() {
         value={product[input.name]} 
         onChange={handleChangeProduct}
       />
+      <ErrorMsg msg={errors[input.name]} />
     </div>
   )
   
