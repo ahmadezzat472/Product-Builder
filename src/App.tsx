@@ -8,6 +8,7 @@ import { IMainProduct, IProduct } from "./interfaces";
 import { errorValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
 import CircleColor from "./components/ui/CircleColor";
+import { v4 as uuid } from 'uuid'
 
 function App() {
   /* __________ Variables __________ */
@@ -32,6 +33,7 @@ function App() {
 
   /* __________ State __________ */
   const [isOpen, setIsOpen] = useState(false);
+  const [allProducts, setAllProducts] = useState<IProduct[]> (ProductList)
   const [product, setProduct] = useState<IProduct> (defaultProduct)
   const [errors, setErrors] = useState<IMainProduct> (defaultMainProduct)
   const [tempColors, setTempColors] = useState<string[]> ([])
@@ -55,6 +57,7 @@ function App() {
 
   const handleCancel = () => {
     setProduct(defaultProduct)
+    setTempColors([])
     close()
   }
 
@@ -77,11 +80,13 @@ function App() {
       return
     }
 
+    setAllProducts(prev => [{...product, colors: tempColors, id:uuid()}, ...prev])
+    handleCancel()
     console.log("SEND TO API");
   }
 
   /* __________ Render __________ */
-  const renderProductList = ProductList.map( (product) => <ProductCard key={product.id} product={product}/>)
+  const renderProductList = allProducts.map( (product) => <ProductCard key={product.id} product={product}/>)
   const renderInputList = inputFormList.map( (input) => 
     <div className="flex flex-col" key={input.id} >
       <label 

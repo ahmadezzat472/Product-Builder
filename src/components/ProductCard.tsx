@@ -9,7 +9,17 @@ interface IProps {
 }
 
 const ProductCard = ({product}: IProps) => {
-    const {title, description, image} = product
+    /* __________ Variables __________ */
+    const {title, description, colors, image, price} = product
+
+    /* __________ Render __________ */
+    const renderColorList = colors.map( (color) => 
+        <CircleColor 
+            key={color}
+            color={color} 
+        />
+    )
+
     return (
         <div className="max-w-sm md:max-w-lg mx-auto md:mx-0 border rounded-lg p-3" >
             <Image
@@ -23,13 +33,11 @@ const ProductCard = ({product}: IProps) => {
             <p>{txtSlicer(description)}</p>
 
             <div className="flex items-center my-3 space-x-2">
-                <CircleColor color="#1d4ed8" />
-                <CircleColor color="#15803d" />
-                <CircleColor color="#b91c1c" />
+                {renderColorList}
             </div>
 
             <div className="flex items-center justify-between">
-                <span>$500,000</span>
+                <span>{price}</span>
                 <Image
                     url="https://static.toiimg.com/photo/80387978.cms" 
                     className="w-10 h-10 rounded-full object-center" 

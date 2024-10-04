@@ -56,7 +56,7 @@ export const ProductList: IProduct[] = [
         description: " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sint venial doloremque at minima ea  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sintveniam doloremque at minima ea Lorem ipsudolor sit amet consectetur adipisicing elit.sintveniam doloremque at minima ea ",
         image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D",
         price: "5000",
-        colors: ["#FF0032", "#2563eb", "#FF6E31"],
+        colors: ["#FF0032", "#2563eb", "#FF6E31", "#FF00FF"],
         category: {
             name: "Fashion",
             image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D",
@@ -80,7 +80,7 @@ export const ProductList: IProduct[] = [
         description: " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sint veniam doloremque at minima ea  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel sintveniam doloremque at minima ea Lorem ipsudolor sit amet consectetur adipisicing elit.sintveniam doloremque at minima ea ",
         image: "https://images.unsplash.com/photo-1523983302122-73e869e1f850?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         price: "50000",
-        colors: ["#FF0032", "#2563eb", "#FF6E31"],
+        colors: ["#FF0032", "#2563eb", "#FF6E31", "#00FFFF"],
         category: {
             name: "cars",
             image: "https://images.unsplash.com/photo-1523983302122-73e869e1f850?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
