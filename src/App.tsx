@@ -126,7 +126,7 @@ function App() {
     </span>
   )
 
-  console.log(tempColors);
+  console.log(tempColors, tempColorList);
   
   
   return (
@@ -150,9 +150,12 @@ function App() {
             {renderColorList}
           </div>
 
-          <div className="flex space-x-2 items-center flex-wrap">
-            {tempColorList}
-          </div>
+          {
+            tempColorList.length > 0 && 
+            <div className="flex space-x-2 items-center flex-wrap">
+              {tempColorList}
+            </div>
+          }
 
           <div className="flex items-center space-x-3">
             <Button className="bg-indigo-600 hover:bg-indigo-800">Submit</Button>
