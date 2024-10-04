@@ -34,6 +34,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [product, setProduct] = useState<IProduct> (defaultProduct)
   const [errors, setErrors] = useState<IMainProduct> (defaultMainProduct)
+  const [tempColors, setTempColors] = useState<string[]> ([])
 
   /* __________ Handler __________ */
   const open = () => setIsOpen(true);
@@ -89,6 +90,7 @@ function App() {
       >
         {input.label}
       </label>
+
       <Input 
         type={input.type} 
         name={input.name} 
@@ -96,10 +98,36 @@ function App() {
         value={product[input.name]} 
         onChange={handleChangeProduct}
       />
+
       <ErrorMsg msg={errors[input.name]} />
     </div>
   )
-  const renderColorList = colors.map( (color) => <CircleColor color={color} />)
+  const renderColorList = colors.map( (color) => 
+    <CircleColor 
+      key={color}
+      color={color} 
+      onClick={() => {
+        if(tempColors.includes(color)){
+          setTempColors( prev => prev.filter(item => item != color))
+          return
+        }
+        setTempColors( prev => [...prev, color] )
+      }}
+    />
+  )
+
+  const tempColorList = tempColors.map( (color) => 
+    <span 
+      key={color}
+      className="p-1 rounded-md text-xs text-white" 
+      style={ {backgroundColor: color} }
+    >
+      {color}
+    </span>
+  )
+
+  console.log(tempColors);
+  
   
   return (
     <main className="container">
@@ -109,15 +137,23 @@ function App() {
       >
         ADD
       </Button>
+
       <div className="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-col-4 gap-3">
         {renderProductList}
       </div>
+
       <Modal isOpen={isOpen} close={close} title="ADD NEW PRODUCT">
-        <form className="space-y-3" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {renderInputList}
+
           <div className="flex space-x-1 items-center flex-wrap">
             {renderColorList}
           </div>
+
+          <div className="flex space-x-2 items-center flex-wrap">
+            {tempColorList}
+          </div>
+
           <div className="flex items-center space-x-3">
             <Button className="bg-indigo-600 hover:bg-indigo-800">Submit</Button>
             <Button className="bg-gray-400 hover:bg-gray-600" onClick={handleCancel}>Cancel</Button>
