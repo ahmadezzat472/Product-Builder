@@ -10,7 +10,7 @@ interface IProps {
 
 const ProductCard = ({product}: IProps) => {
     /* __________ Variables __________ */
-    const {title, description, colors, image, price} = product
+    const {title, description, colors, image, price, category} = product
 
     /* __________ Render __________ */
     const renderColorList = colors.map( (color) => 
@@ -39,9 +39,9 @@ const ProductCard = ({product}: IProps) => {
             <div className="flex items-center justify-between">
                 <span>{price}</span>
                 <Image
-                    url="https://static.toiimg.com/photo/80387978.cms" 
+                    url={category.image}
                     className="w-10 h-10 rounded-full object-center" 
-                    alt="product name" 
+                    alt={category.name}
                 />
             </div>
 

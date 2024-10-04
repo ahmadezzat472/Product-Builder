@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid'
-import { IProduct, IInputForm } from "../interfaces"
+import { IProduct, IInputForm, ICategory } from "../interfaces"
+
 export const ProductList: IProduct[] = [
     {
         id: uuid(),
@@ -144,4 +145,28 @@ export const colors: string[] = [
     "#808080",
     "#000000",
     "#FFFFFF",
+]
+
+export const CategoryList: ICategory[] = [
+    {
+        id: uuid(),
+        name: "Electronics",
+        image: "https://media.istockphoto.com/id/532174758/photo/blue-circuit-with-binary-numbers.webp?b=1&s=612x612&w=0&k=20&c=Pk-fMgiTILfVhiVfK8LYiTNYV2Pw6nsJoB-IvttbQbQ=",
+    },
+    {
+        id: uuid(),
+        name: "Fashion",
+        image: "https://media.istockphoto.com/id/499723864/photo/scarf-mannequin.jpg?s=612x612&w=0&k=20&c=A4BolAsRBjQksPlI69YbVl3t7IKWx4k6velSJlpIRwg=",
+    },
+    {
+        id: uuid(),
+        name: "Cars",
+        image: "https://images.unsplash.com/photo-1523983302122-73e869e1f850?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+
+    {
+        id: uuid(),
+        name: "Sports",
+        image: "https://media.istockphoto.com/id/1555862031/photo/full-length-image-of-young-sportsman-basketball-player-in-motion-jumping-with-ball-against.jpg?s=612x612&w=0&k=20&c=_xnvDKKsSlo3oHFfk5l9z07mfNPOh3K8LAw8ziNIhVI=",
+    },
 ]

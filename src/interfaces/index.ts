@@ -16,11 +16,18 @@ export interface IMainProduct {
     description: string;
     image: string;
     price: string;
+    colors: string[]
 }
 
 export interface IInputForm {
-    id: string
-    name: 'title' | 'description' | 'image' | 'price'
-    type: string
-    label: string
+    id: string;
+    name: 'title' | 'description' | 'image' | 'price';
+    type: string;
+    label: string;
+}
+
+export interface ICategory {
+    id: string;
+    name: string;
+    image: string;
 }

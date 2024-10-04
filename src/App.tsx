@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import ProductCard from "./components/ProductCard"
 import Modal from "./components/ui/Modal"
-import { ProductList, colors, inputFormList } from "./data"
+import { CategoryList, ProductList, colors, inputFormList } from "./data"
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import { IMainProduct, IProduct } from "./interfaces";
@@ -9,6 +9,7 @@ import { errorValidation } from "./validation";
 import ErrorMsg from "./components/ErrorMsg";
 import CircleColor from "./components/ui/CircleColor";
 import { v4 as uuid } from 'uuid'
+import Select from "./components/ui/Select";
 
 function App() {
   /* __________ Variables __________ */
@@ -29,6 +30,7 @@ function App() {
     description: '',
     image: '',
     price: '',
+    colors: []
   }
 
   /* __________ State __________ */
@@ -37,6 +39,7 @@ function App() {
   const [product, setProduct] = useState<IProduct> (defaultProduct)
   const [errors, setErrors] = useState<IMainProduct> (defaultMainProduct)
   const [tempColors, setTempColors] = useState<string[]> ([])
+  const [selectedCategory, setSelectedCategory] = useState(CategoryList[0])
 
   /* __________ Handler __________ */
   const open = () => setIsOpen(true);
@@ -58,6 +61,7 @@ function App() {
   const handleCancel = () => {
     setProduct(defaultProduct)
     setTempColors([])
+    setErrors(defaultMainProduct)
     close()
   }
 
@@ -70,6 +74,7 @@ function App() {
       description,
       image,
       price,
+      colors: tempColors
     })
 
     // ** check if any item has a value of "" && check if all item have a value of ""
@@ -80,9 +85,9 @@ function App() {
       return
     }
 
-    setAllProducts(prev => [{...product, colors: tempColors, id:uuid()}, ...prev])
+    setAllProducts(prev => [{...product, colors: tempColors, category:selectedCategory, id:uuid()}, ...prev])
     handleCancel()
-    console.log("SEND TO API");
+    console.log("SEND TO API:", allProducts);
   }
 
   /* __________ Render __________ */
@@ -117,6 +122,10 @@ function App() {
           return
         }
         setTempColors( prev => [...prev, color] )
+        setErrors({
+          ... errors,
+          colors: []
+        })
       }}
     />
   )
@@ -129,11 +138,8 @@ function App() {
     >
       {color}
     </span>
-  )
+  )  
 
-  console.log(tempColors, tempColorList);
-  
-  
   return (
     <main className="container">
       <Button 
@@ -150,6 +156,11 @@ function App() {
       <Modal isOpen={isOpen} close={close} title="ADD NEW PRODUCT">
         <form className="space-y-4" onSubmit={handleSubmit}>
           {renderInputList}
+
+          <div>
+            <Select selected={selectedCategory}  setSelected={setSelectedCategory} />
+            <ErrorMsg msg={errors.colors[0]} />
+          </div>
 
           <div className="flex space-x-1 items-center flex-wrap">
             {renderColorList}

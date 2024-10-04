@@ -5,7 +5,8 @@ export const errorValidation =  (product: IMainProduct) => {
         title: "",
         description: "",
         image: "",
-        price: ""
+        price: "",
+        colors: []
     }
 
     const ValidUrl = /^(ftp|http|https):\/\/[^\s/$.?#].[^\s]*$/.test(product.image);
@@ -21,8 +22,13 @@ export const errorValidation =  (product: IMainProduct) => {
     if ( !product.image.trim() || !ValidUrl ) {
         errorObj.image = "Valid ImageUrl Required."
     }
+
     if ( !product.price.trim() || isNaN(Number(product.price)) ) {
         errorObj.price = "Enter Valid Price."
+    }
+
+    if(product.colors.length == 0){
+        errorObj.colors[0] = "colors must be at least 1 color."
     }
 
     return errorObj;
