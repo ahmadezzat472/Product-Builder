@@ -1,0 +1,1 @@
+export type TName = 'title' | 'description' | 'image' | 'price';
