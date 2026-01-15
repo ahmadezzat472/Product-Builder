@@ -123,7 +123,7 @@ function App() {
     const noErrorMsg = Object.values(errorObj).some(val => val == "") && Object.values(errorObj).every(val => val == "")
     
     if(!noErrorMsg){
-      setErrors(errorObj)
+      setErrors({...errorObj, colors: []})
       return
     }
 
